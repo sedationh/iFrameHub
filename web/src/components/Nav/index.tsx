@@ -1,41 +1,56 @@
 import { useNavigate } from "react-router-dom"
-import { config } from "../../config"
-import usePage from "../../hooks/usePage"
 import styled from "@emotion/styled"
-
-const NavTitle = styled.h1`
-  font-size: 36px;
-  margin-top: 4px;
-  text-align: center;
-`
+import { CaretRightFilled } from "@ant-design/icons"
+import { Button, Drawer } from "antd"
+import { useState } from "react"
+import { config } from "../../config"
 
 const NavWrapper = styled.div`
-  max-width: 40px;
+  min-width: 40px;
   word-break: break-all;
 `
 
 const Nav = () => {
-  const page = usePage()
   const navigate = useNavigate()
 
+  const handleJump = (item) => {
+    navigate(`/p/${item.title}`)
+  }
+
+  const [open, setOpen] = useState(false)
+
   return (
-    <NavWrapper className="pr-2">
-      <details className="dropdown">
-        <summary className="btn btn-sm btn-neutral">X</summary>
-        <ul className="shadow menu dropdown-content z-[1] rounded-box w-40 bg-white">
-          {config.map((item) => (
+    <NavWrapper className="mr-2">
+      <div
+        className="flex justify-center items-center cursor-pointer w-full h-full bg-secondary hover:bg-secondary-focus transition-all rounded"
+        onClick={() => setOpen(true)}
+      >
+        <CaretRightFilled />
+      </div>
+      <Drawer
+        placement="left"
+        onClose={() => {
+          setOpen(false)
+        }}
+        open={open}
+        maskClosable
+        mask
+        closable={false}
+      >
+        <ul>
+          {config.map((item, index) => (
             <li
+              key={index}
               onClick={() => {
-                navigate(`/p/${item.title}`)
+                handleJump(item)
+                setOpen(false)
               }}
-              key={item.title}
             >
-              <a>{item.title}</a>
+              <Button type="link">{item.title}</Button>
             </li>
           ))}
         </ul>
-      </details>
-      <NavTitle>{page.title}</NavTitle>
+      </Drawer>
     </NavWrapper>
   )
 }

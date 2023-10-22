@@ -1,6 +1,7 @@
 import { useRef, useState } from "react"
 import { flushSync } from "react-dom"
 import { iframeAllowDirective } from "../../permissions-policy"
+import { Button } from "antd"
 
 export type BoardType = {
   src: string
@@ -27,10 +28,10 @@ const Board = (props: BoardType) => {
       }}
       className="flex flex-col bg-white"
     >
-      <div className="flex p-1 bg-secondary">
-        <button onClick={refresh} className="btn btn-xs btn-primary">
+      <div className="flex p-1 bg-accent">
+        <Button size="small" type="link" onClick={refresh}>
           刷新
-        </button>
+        </Button>
       </div>
       <iframe ref={iframeRef} className="flex-1 w-full" allow={iframeAllowDirective} src={src} />
     </div>
