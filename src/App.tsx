@@ -1,19 +1,32 @@
+import Board from "./components/Board"
+
+const config = [
+  {
+    src: "https://poe.com/ChatGPT",
+  },
+  {
+    src: "https://github.com/",
+  },
+  {
+    src: "https://crdt-collaborative-edit.sedationh.top/",
+  },
+  {
+    src: "https://reading-helper.vercel.app/",
+  },
+  // {
+  //   src: "https://developer.mozilla.org/en-US/",
+  // },
+  // {
+  //   src: "https://meego.feishu.cn/enterprise_application/userGantt/fryhmDmIR",
+  // },
+]
+
 function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <button className="btn">Button</button>
-      <details className="dropdown mb-32">
-        <summary className="m-1 btn">open or close</summary>
-        <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <a>Item 2</a>
-          </li>
-        </ul>
-      </details>
+    <div className="h-screen flex gap-4">
+      {config.map((item, index) => (
+        <Board key={index} src={item.src} />
+      ))}
     </div>
   )
 }
