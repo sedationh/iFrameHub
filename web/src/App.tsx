@@ -1,32 +1,11 @@
-import Board from "./components/Board"
-
-const config = [
-  {
-    src: "https://poe.com/ChatGPT",
-  },
-  {
-    src: "https://github.com/",
-  },
-  {
-    src: "https://crdt-collaborative-edit.sedationh.top/",
-  },
-  {
-    src: "https://reading-helper.vercel.app/",
-  },
-  // {
-  //   src: "https://developer.mozilla.org/en-US/",
-  // },
-  // {
-  //   src: "https://meego.feishu.cn/enterprise_application/userGantt/fryhmDmIR",
-  // },
-]
+import { Outlet } from "react-router-dom"
+import Nav from "./components/Nav"
 
 function App() {
   return (
-    <div className="h-screen flex gap-4 boardbox overflow-scroll">
-      {config.map((item, index) => (
-        <Board key={index} index={index} src={item.src} />
-      ))}
+    <div className="h-screen flex p-2">
+      <Nav />
+      <Outlet />
     </div>
   )
 }

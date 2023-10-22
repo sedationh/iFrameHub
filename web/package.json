@@ -11,11 +11,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "daisyui": "latest",
+    "antd": "^5.10.2",
+    "daisyui": "^3.9.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.17.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

@@ -1,8 +1,15 @@
 import { useRef, useState } from "react"
 import { flushSync } from "react-dom"
 import { iframeAllowDirective } from "../../permissions-policy"
+import { Button, Space } from "antd"
 
-const Board = (props: { src: string; width?: number; index: number }) => {
+export type BoardType = {
+  src: string
+  width?: number
+  index: number
+}
+
+const Board = (props: BoardType) => {
   const iframeRef = useRef(null)
 
   const [src, setSrc] = useState(props.src)
@@ -17,24 +24,26 @@ const Board = (props: { src: string; width?: number; index: number }) => {
     srcObj.searchParams.delete("t")
     setSrc(srcObj.toString())
   }
-  const cover = () => {
-    if (!isFull) {
-      setIsFull(true)
-      const boards = document.querySelectorAll(".board")
-      let x = 0
-      for (let i = 0; i < props.index; i++) {
-        x += boards[i].clientWidth + 16
-      }
-      setTimeout(() => {
-        // ID
-        document.getElementsByClassName("boardbox")[0].scrollTo({
-          left: x,
-          behavior: "smooth",
-        })
-      }, 200)
-    } else {
+
+  const handleFullChange = () => {
+    if (isFull) {
       setIsFull(false)
+
+      return
     }
+    setIsFull(true)
+    const boards = document.querySelectorAll(".board")
+    let x = 0
+    for (let i = 0; i < props.index; i++) {
+      x += boards[i].clientWidth + 16
+    }
+    setTimeout(() => {
+      const $page = document.querySelector("#page")
+      $page.scrollTo({
+        left: x,
+        behavior: "smooth",
+      })
+    }, 200)
   }
 
   return (
@@ -42,17 +51,24 @@ const Board = (props: { src: string; width?: number; index: number }) => {
       style={{
         minWidth: isFull ? "100vw" : props.width ?? 700,
       }}
-      className="flex flex-col board"
+      className="flex flex-col bg-white board"
     >
-      <div className="flex p-1 bg-secondary">
-        <button onClick={refresh} className="btn btn-xs btn-primary">
-          刷新
-        </button>
-        <button onClick={cover} className="btn btn-xs btn-primary">
-          {isFull ? "缩小" : "全屏"}
-        </button>
+      <div className="flex p-1 bg-accent">
+        <Space>
+          <Button size="small" type="link" onClick={refresh}>
+            刷新
+          </Button>
+          <Button size="small" type="link" onClick={handleFullChange}>
+            {isFull ? "缩小" : "全屏"}
+          </Button>
+        </Space>
       </div>
-      <iframe ref={iframeRef} className="flex-1 w-full" allow={iframeAllowDirective} src={src} />
+      <iframe
+        ref={iframeRef}
+        className="flex-1 w-full"
+        allow={iframeAllowDirective}
+        src={src}
+      />
     </div>
   )
 }
