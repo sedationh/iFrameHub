@@ -49,7 +49,7 @@ const Board = (props: BoardType) => {
   return (
     <div
       style={{
-        minWidth: isFull ? "100vw" : props.width ?? 700,
+        minWidth: isFull ? `calc(100vw - 56px)` : props.width ?? 700,
       }}
       className="flex flex-col bg-white board"
     >
@@ -59,7 +59,7 @@ const Board = (props: BoardType) => {
             刷新
           </Button>
           <Button size="small" type="link" onClick={handleFullChange}>
-            {isFull ? "缩小" : "全屏"}
+            {isFull ? "恢复" : "全屏"}
           </Button>
         </Space>
       </div>
