@@ -23,9 +23,9 @@ const config = [
 
 function App() {
   return (
-    <div className="h-screen flex gap-4">
+    <div className="h-screen flex gap-4 boardbox overflow-scroll">
       {config.map((item, index) => (
-        <Board key={index} src={item.src} />
+        <Board key={index} index={index} src={item.src} />
       ))}
     </div>
   )
