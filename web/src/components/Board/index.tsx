@@ -2,7 +2,12 @@ import { useRef, useState } from "react"
 import { flushSync } from "react-dom"
 import { iframeAllowDirective } from "../../permissions-policy"
 
-const Board = (props: { src: string; width?: number }) => {
+export type BoardType = {
+  src: string
+  width?: number
+}
+
+const Board = (props: BoardType) => {
   const iframeRef = useRef(null)
 
   const [src, setSrc] = useState(props.src)
@@ -20,7 +25,7 @@ const Board = (props: { src: string; width?: number }) => {
       style={{
         minWidth: props.width ?? 700,
       }}
-      className="flex flex-col"
+      className="flex flex-col bg-white"
     >
       <div className="flex p-1 bg-secondary">
         <button onClick={refresh} className="btn btn-xs btn-primary">
