@@ -5,9 +5,10 @@ const Page = () => {
   const page = usePage()
 
   return (
-    <div className="flex gap-4 h-full">
+    // TODO: why
+    <div className="flex gap-4 h-full overflow-scroll" id="page">
       {page?.content?.map((item, index) => (
-        <Board key={index} {...item} />
+        <Board key={index} index={index} {...item} />
       ))}
     </div>
   )
