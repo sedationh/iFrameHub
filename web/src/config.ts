@@ -3,6 +3,9 @@ export const config = [
     title: "页面1",
     content: [
       {
+        src: "https://webbrowsertools.com/test-x-frame-options/",
+      },
+      {
         src: "https://poe.com/ChatGPT",
       },
       {
