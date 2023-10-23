@@ -1,4 +1,4 @@
-export const config = [
+export const defaultValue = [
   {
     title: "页面1",
     content: [
@@ -31,3 +31,5 @@ export const config = [
     ],
   },
 ]
+
+export const config = JSON.parse(localStorage.getItem('config')) || defaultValue

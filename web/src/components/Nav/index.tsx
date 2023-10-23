@@ -3,12 +3,14 @@ import styled from "@emotion/styled"
 import { CaretRightFilled } from "@ant-design/icons"
 import { Button, Drawer } from "antd"
 import { useState } from "react"
-import { config } from "../../config"
+// import { config } from "../../config"
 
 const NavWrapper = styled.div`
   min-width: 40px;
   word-break: break-all;
 `
+const config = localStorage.getItem('config')
+
 
 const Nav = () => {
   const navigate = useNavigate()
@@ -18,6 +20,10 @@ const Nav = () => {
   }
 
   const [open, setOpen] = useState(false)
+
+  const setConfig = () => {
+    navigate('/setting')
+  }
 
   return (
     <NavWrapper className="mr-2">
@@ -38,7 +44,7 @@ const Nav = () => {
         closable={false}
       >
         <ul>
-          {config.map((item, index) => (
+          {JSON.parse(config).map((item, index) => (
             <li
               key={index}
               onClick={() => {
@@ -50,7 +56,8 @@ const Nav = () => {
             </li>
           ))}
         </ul>
-      </Drawer>
+        <Button type="primary" shape="round" className="absolute bottom-9 left-5" onClick={setConfig}>配置</Button>
+      </Drawer> 
     </NavWrapper>
   )
 }

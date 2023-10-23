@@ -4,6 +4,7 @@ import App from "./App.tsx"
 import "./index.css"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Page from "./components/Page/index.tsx"
+import Settting from "./components/Setting/index.tsx"
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: "p/:page",
         element: <Page />,
+      },
+      {
+        path: "setting",
+        element: <Settting />,
       },
     ],
   },
