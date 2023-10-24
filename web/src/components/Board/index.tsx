@@ -72,7 +72,7 @@ const Board = (props: BoardType) => {
       </div>
       <iframe
         ref={iframeRef}
-        className="flex-1 w-full"
+        className="flex-1 w-full border-none"
         allow={iframeAllowDirective}
         src={src}
       />
