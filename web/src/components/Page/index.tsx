@@ -3,7 +3,6 @@ import Board from "../Board"
 
 const Page = () => {
   const page = usePage()
-
   return (
     // TODO: why
     <div className="flex gap-4 h-full overflow-x-scroll" id="page">

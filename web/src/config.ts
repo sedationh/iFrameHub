@@ -23,7 +23,7 @@ export const defaultValue = [
     ],
   },
   {
-    title: "Page2",
+    title: "页面2",
     content: [
       {
         src: "https://meego.feishu.cn/enterprise_application/userGantt/fryhmDmIR",
@@ -31,5 +31,3 @@ export const defaultValue = [
     ],
   },
 ]
-
-export const config = JSON.parse(localStorage.getItem('config')) || defaultValue

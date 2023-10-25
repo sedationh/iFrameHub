@@ -1,10 +1,11 @@
 import { Outlet, useNavigate, useMatches } from "react-router-dom"
 import Nav from "./components/Nav"
 import { useEffect } from "react"
-import { config } from "./config"
 import usePage from "./hooks/usePage"
+import { useGlobalConfig } from "./context/globalConfig"
 
 function App() {
+  const { config } = useGlobalConfig()
   const navigate = useNavigate()
   const page = usePage()
 
