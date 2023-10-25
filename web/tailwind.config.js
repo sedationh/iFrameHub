@@ -10,7 +10,4 @@ export default {
   daisyui: {
     themes: ["light", "dark", "valentine"],
   },
-  corePlugins: {
-    preflight: false,
-  },
 }

@@ -60,7 +60,7 @@ const Nav = () => {
         <Button
           type="primary"
           shape="round"
-          className="absolute bottom-9 left-5"
+          className="absolute bottom-9 left-5 bg-blue-500"
           onClick={setConfig}
         >
           配置
