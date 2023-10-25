@@ -21,8 +21,7 @@ const Nav = () => {
 
   const { config } = useGlobalConfig()
 
-  // TODO
-  const setConfig = () => {
+  const handleJumpConfig = () => {
     navigate("/setting")
   }
 
@@ -61,7 +60,7 @@ const Nav = () => {
           type="primary"
           shape="round"
           className="absolute bottom-9 left-5 bg-blue-500"
-          onClick={setConfig}
+          onClick={handleJumpConfig}
         >
           配置
         </Button>

@@ -46,7 +46,7 @@ const Board = (props: BoardType) => {
     }, 200)
   }
 
-  const newWindow = () => {
+  const openNewWindow = () => {
     window.open(src)
   }
 
@@ -65,7 +65,7 @@ const Board = (props: BoardType) => {
           <Button size="small" type="link" onClick={handleFullChange}>
             {isFull ? "恢复" : "全屏"}
           </Button>
-          <Button size="small" type="link" onClick={newWindow}>
+          <Button size="small" type="link" onClick={openNewWindow}>
             新窗口打开
           </Button>
         </Space>

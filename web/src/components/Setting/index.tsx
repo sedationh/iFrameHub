@@ -3,6 +3,7 @@ import { Button, Space, message } from "antd"
 import { defaultValue } from "../../config.ts"
 import { useState } from "react"
 import { useGlobalConfig } from "../../context/globalConfig"
+import { isJSON } from "../../utils.ts"
 
 function Settting() {
   const { config, setConfig } = useGlobalConfig()
@@ -28,14 +29,6 @@ function Settting() {
   const format = () => {
     const v = JSON.parse(value)
     setValue(JSON.stringify(v, null, 2))
-  }
-  const isJSON = (data: string) => {
-    try {
-      JSON.parse(data)
-      return true
-    } catch (error) {
-      return false
-    }
   }
 
   return (
