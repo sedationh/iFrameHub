@@ -43,7 +43,7 @@ function Settting() {
       {contextHolder}
       <Editor
         height="800px"
-        language="JSON"
+        language="json"
         theme="vs-dark"
         value={value}
         onChange={setValue}
