@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 import { CaretRightFilled } from "@ant-design/icons"
 import { Button, Drawer } from "antd"
 import { useState } from "react"
-import { config } from "../../config"
+import { useGlobalConfig } from "../../context/globalConfig"
 
 const NavWrapper = styled.div`
   min-width: 40px;
@@ -18,6 +18,12 @@ const Nav = () => {
   }
 
   const [open, setOpen] = useState(false)
+
+  const { config } = useGlobalConfig()
+
+  const handleJumpConfig = () => {
+    navigate("/setting")
+  }
 
   return (
     <NavWrapper className="mr-2">
@@ -50,6 +56,14 @@ const Nav = () => {
             </li>
           ))}
         </ul>
+        <Button
+          type="primary"
+          shape="round"
+          className="absolute bottom-9 left-5 bg-blue-500"
+          onClick={handleJumpConfig}
+        >
+          配置
+        </Button>
       </Drawer>
     </NavWrapper>
   )

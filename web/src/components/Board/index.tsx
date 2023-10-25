@@ -46,6 +46,10 @@ const Board = (props: BoardType) => {
     }, 200)
   }
 
+  const openNewWindow = () => {
+    window.open(src)
+  }
+
   return (
     <div
       style={{
@@ -61,11 +65,14 @@ const Board = (props: BoardType) => {
           <Button size="small" type="link" onClick={handleFullChange}>
             {isFull ? "恢复" : "全屏"}
           </Button>
+          <Button size="small" type="link" onClick={openNewWindow}>
+            新窗口打开
+          </Button>
         </Space>
       </div>
       <iframe
         ref={iframeRef}
-        className="flex-1 w-full"
+        className="flex-1 w-full border-none"
         allow={iframeAllowDirective}
         src={src}
       />
