@@ -23,6 +23,7 @@ const Nav = () => {
 
   const handleJumpConfig = () => {
     navigate("/setting")
+    setOpen(false)
   }
 
   return (
