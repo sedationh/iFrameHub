@@ -2,6 +2,7 @@
   "name": "iframe-helper",
   "displayName": "Iframe helper",
   "version": "0.0.1",
+  "packageManager": "pnpm@8.6.0",
   "description": "A basic Plasmo extension.",
   "author": "Plasmo Corp. <foss@plasmo.com>",
   "scripts": {
