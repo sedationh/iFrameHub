@@ -35,12 +35,13 @@ function Settting() {
     setValue(JSON.stringify(v, null, 2))
   }
   useEffect(() => {
-    document.addEventListener("keydown", PopupKeyUp, false)
+    document.addEventListener("keydown", handleSaveKeyboardAction, false)
     return () => {
-      document.removeEventListener("keydown", PopupKeyUp, false)
+      document.removeEventListener("keydown", handleSaveKeyboardAction, false)
     }
-  })
-  const PopupKeyUp = (e) => {
+  }, [])
+
+  const handleSaveKeyboardAction = (e) => {
     if ((e.ctrlKey && e.key === "s") || (e.metaKey && e.key === "s")) {
       e.preventDefault()
       submit()
@@ -67,7 +68,6 @@ function Settting() {
         theme="vs-dark"
         value={value}
         onChange={setValue}
-        options={{ formatOnPaste: true, formatOnType: true }}
       />
     </div>
   )
