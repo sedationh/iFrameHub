@@ -1,17 +1,19 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import usePage from "../../hooks/usePage"
 import Board from "../Board"
+import classNames from "classnames"
 
 const Page = () => {
   const page = usePage()
+  const [hasScrollBar, setHasScrollBar] = useState(false)
 
   const handleResize = (entries) => {
     for (const entry of entries) {
       if (entry.target.clientWidth < entry.target.scrollWidth) {
-        entry.target.classList.add("pb-2")
+        setHasScrollBar(true)
         return
       }
-      entry.target.classList.remove("pb-2")
+      setHasScrollBar(false)
     }
   }
   useEffect(() => {
@@ -26,7 +28,13 @@ const Page = () => {
   }, [])
 
   return (
-    <div className="flex gap-4 h-full overflow-x-auto pb-2" id="page">
+    <div
+      className={classNames([
+        "flex gap-4 h-full overflow-x-auto ",
+        hasScrollBar && "pb-2",
+      ])}
+      id="page"
+    >
       {page?.content?.map((item, index) => (
         <Board key={`${index}-${page.title}`} index={index} {...item} />
       ))}
