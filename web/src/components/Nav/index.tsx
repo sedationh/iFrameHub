@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 import { CaretRightFilled } from "@ant-design/icons"
 import { Button, Drawer } from "antd"
 import { useState } from "react"
-import { useGlobalConfig } from "../../context/globalConfig"
+import { QuickJump } from "../QuickJump"
 
 const NavWrapper = styled.div`
   min-width: 40px;
@@ -13,13 +13,7 @@ const NavWrapper = styled.div`
 const Nav = () => {
   const navigate = useNavigate()
 
-  const handleJump = (item) => {
-    navigate(`/p/${item.title}`)
-  }
-
   const [open, setOpen] = useState(false)
-
-  const { config } = useGlobalConfig()
 
   const handleJumpConfig = () => {
     navigate("/setting")
@@ -44,19 +38,7 @@ const Nav = () => {
         mask
         closable={false}
       >
-        <ul>
-          {config.map((item, index) => (
-            <li
-              key={index}
-              onClick={() => {
-                handleJump(item)
-                setOpen(false)
-              }}
-            >
-              <Button type="link">{item.title}</Button>
-            </li>
-          ))}
-        </ul>
+        <QuickJump setOpen={setOpen}></QuickJump>
         <Button
           type="primary"
           shape="round"
