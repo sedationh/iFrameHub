@@ -6,8 +6,8 @@ import { jumpBoard } from "../../utils"
 
 const { Search } = Input
 
-export const QuickJump: React.FC = ({ setOpen }) => {
-  const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([])
+export const QuickJump = ({ setOpen }) => {
+  const [expandedKeys, setExpandedKeys] = useState([])
   const [searchValue, setSearchValue] = useState("")
   const [autoExpandParent, setAutoExpandParent] = useState(true)
 
@@ -23,7 +23,7 @@ export const QuickJump: React.FC = ({ setOpen }) => {
       if (item.content) {
         item.children = item.content.map((c) => {
           const url = new URL(c.src)
-          const pathname = url.pathname.replace(/^(\s|\/)+|(\s|\/)+$/g, "")
+          const pathname = url.pathname.replace(/^(\s|\/)+|(\s|\/)+$/g, "") //去掉url.pathname首尾斜杠
           const host = url.host.split(".").at(-2)
           const title = pathname || host || c.src
           return {
@@ -39,7 +39,7 @@ export const QuickJump: React.FC = ({ setOpen }) => {
       }
       return item
     })
-  }, [searchValue])
+  }, [searchValue, config])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
