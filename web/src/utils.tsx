@@ -41,8 +41,9 @@ export const builTreeDataFromConfig = (configRow, searchValue) => {
       const srcItem = item.content[index]
       const url = new URL(srcItem.src)
       const pathname = url.pathname.replace(/^(\s|\/)+|(\s|\/)+$/g, "") //去掉url.pathname首尾斜杠
-      const host = url.host.split(".").at(-2)
-      const title = pathname || host || srcItem.src
+      const host = url.host.split(".")
+      const lastSecondElement = host[host.length - 2]
+      const title = pathname || lastSecondElement || srcItem.src
 
       if (searchValue && !title.includes(searchValue)) {
         continue
