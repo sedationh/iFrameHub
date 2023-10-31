@@ -1,3 +1,5 @@
+import { cloneDeep } from "lodash-es"
+
 export const isJSON = (data: string) => {
   try {
     JSON.parse(data)
@@ -22,8 +24,9 @@ export const jumpBoard = (index) => {
   }, 200)
 }
 
-export const builTreeDataFromConfig = (config, searchValue) => {
+export const builTreeDataFromConfig = (configRow, searchValue) => {
   const treeData = []
+  const config = cloneDeep(configRow)
 
   for (let i = 0; i < config.length; i++) {
     const item = config[i]
