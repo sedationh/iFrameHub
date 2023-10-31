@@ -1,23 +1,26 @@
 import { Editor } from "@monaco-editor/react"
 import { Button, Space, message } from "antd"
 import { defaultValue } from "../../config.ts"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useGlobalConfig } from "../../context/globalConfig"
 import { isJSON } from "../../utils.tsx"
+import { useGetState } from "ahooks"
 
 function Settting() {
   const { config, setConfig } = useGlobalConfig()
-  const [value, setValue] = useState(JSON.stringify(config, null, 2))
+  const [value, setValue, getValue] = useGetState(
+    JSON.stringify(config, null, 2)
+  )
   const [messageApi, contextHolder] = message.useMessage()
 
   const submit = () => {
-    if (!isJSON(value)) {
+    if (!isJSON(getValue())) {
       messageApi.open({
         type: "error",
         content: "请使用正确的 JSON 代码",
       })
     }
-    setConfig(JSON.parse(value))
+    setConfig(JSON.parse(getValue()))
     format()
     messageApi.open({
       type: "success",
@@ -31,7 +34,7 @@ function Settting() {
     console.log("share")
   }
   const format = () => {
-    const v = JSON.parse(value)
+    const v = JSON.parse(getValue())
     setValue(JSON.stringify(v, null, 2))
   }
   useEffect(() => {
