@@ -24,7 +24,7 @@ export const jumpBoard = (index) => {
   }, 200)
 }
 
-export const builTreeDataFromConfig = (configRow, searchValue) => {
+export const buildTreeDataFromConfig = (configRow, searchValue) => {
   const treeData = []
   const config = cloneDeep(configRow)
 

@@ -1,7 +1,7 @@
 import { Input, Tree } from "antd"
 import { useGlobalConfig } from "../../context/globalConfig"
 import { useNavigate } from "react-router-dom"
-import { builTreeDataFromConfig, jumpBoard } from "../../utils"
+import { buildTreeDataFromConfig, jumpBoard } from "../../utils"
 import { useState } from "react"
 
 const { Search } = Input
@@ -10,7 +10,7 @@ export const QuickJump = ({ setOpen }) => {
   const { config } = useGlobalConfig()
   const [searchValue, setSearchValue] = useState("")
 
-  const treeData = builTreeDataFromConfig(config, searchValue.trim())
+  const treeData = buildTreeDataFromConfig(config, searchValue.trim())
 
   const navigate = useNavigate()
 
