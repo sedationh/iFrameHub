@@ -3,7 +3,7 @@ import { Button, Space, message } from "antd"
 import { defaultValue } from "../../config.ts"
 import { useEffect, useState } from "react"
 import { useGlobalConfig } from "../../context/globalConfig"
-import { isJSON } from "../../utils.ts"
+import { isJSON } from "../../utils.tsx"
 
 function Settting() {
   const { config, setConfig } = useGlobalConfig()

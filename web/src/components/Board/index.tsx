@@ -2,6 +2,7 @@ import { useRef, useState } from "react"
 import { flushSync } from "react-dom"
 import { iframeAllowDirective } from "../../permissions-policy"
 import { Button, Space } from "antd"
+import { jumpBoard } from "../../utils"
 
 export type BoardType = {
   src: string
@@ -32,18 +33,7 @@ const Board = (props: BoardType) => {
       return
     }
     setIsFull(true)
-    const boards = document.querySelectorAll(".board")
-    let x = 0
-    for (let i = 0; i < props.index; i++) {
-      x += boards[i].clientWidth + 16
-    }
-    setTimeout(() => {
-      const $page = document.querySelector("#page")
-      $page.scrollTo({
-        left: x,
-        behavior: "smooth",
-      })
-    }, 200)
+    jumpBoard(props.index)
   }
 
   const openNewWindow = () => {
