@@ -6,7 +6,7 @@ import { useGlobalConfig } from "../../context/globalConfig"
 import { isJSON } from "../../utils.tsx"
 import { useGetState } from "ahooks"
 
-function Settting() {
+function Setting() {
   const { config, setConfig } = useGlobalConfig()
   const [value, setValue, getValue] = useGetState(
     JSON.stringify(config, null, 2)
@@ -75,4 +75,4 @@ function Settting() {
     </div>
   )
 }
-export default Settting
+export default Setting
