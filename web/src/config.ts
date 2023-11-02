@@ -3,21 +3,21 @@ export const defaultValue = [
     title: "页面1",
     content: [
       {
-        src: "https://webbrowsertools.com/test-x-frame-options/",
+        src: "https://reading-helper.vercel.app/",
       },
       {
-        src: "https://poe.com/ChatGPT",
+        src: "https://devtool.tech/",
       },
       {
-        src: "https://github.com/",
-      }
+        src: "https://www.bilibili.com/",
+      },
     ],
   },
   {
     title: "页面2",
     content: [
       {
-        src: "https://www.bilibili.com/",
+        src: "https://www.typescriptlang.org/",
       },
     ],
   },
