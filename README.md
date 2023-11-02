@@ -11,7 +11,7 @@ Aggregate common pages by iFrame
 - [HiFrame](https://chrome.google.com/webstore/detail/joibipdfkleencgfgbbncoheaekffdfn)
 - [chrome-samesite-cookie](https://github.com/daylenjeez/chrome-samesite-cookie)
 
-插件来使用
+插件来使用，获得更好的使用体验
 
 
 
