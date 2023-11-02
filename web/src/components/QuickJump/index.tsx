@@ -23,9 +23,8 @@ export const QuickJump = ({ setOpen }) => {
     )
 
     navigate(`/p/${selectParent}`)
-
     setTimeout(() => {
-      jumpBoard(index === -1 ? 0 : index)
+      jumpBoard(index === -1 ? 0 : index, `a${parentIndex}-${selectParent}`)
     }, 300)
 
     setOpen(false)

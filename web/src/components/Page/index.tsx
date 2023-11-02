@@ -3,7 +3,7 @@ import usePage from "../../hooks/usePage"
 import Board from "../Board"
 import classNames from "classnames"
 
-const Page = () => {
+const Page = ({ id }) => {
   const page = usePage()
   const [hasScrollBar, setHasScrollBar] = useState(false)
 
@@ -17,7 +17,7 @@ const Page = () => {
     }
   }
   useEffect(() => {
-    const page = document.getElementById("page")
+    const page = document.getElementById(id)
 
     const resizeObserver = new ResizeObserver(handleResize)
     resizeObserver.observe(page)
@@ -33,10 +33,10 @@ const Page = () => {
         "flex gap-4 h-full overflow-x-auto ",
         hasScrollBar && "pb-2",
       ])}
-      id="page"
+      id={id}
     >
       {page?.content?.map((item, index) => (
-        <Board key={`${index}-${page.title}`} index={index} {...item} />
+        <Board key={`${index}-${page.title}`} index={index} id={id} {...item} />
       ))}
     </div>
   )
