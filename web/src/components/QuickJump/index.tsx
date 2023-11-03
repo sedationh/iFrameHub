@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom"
 import { buildTreeDataFromConfig, jumpBoard } from "../../utils"
 import { useState } from "react"
 
-const { Search } = Input
-
 export const QuickJump = ({ setOpen }) => {
   const { config } = useGlobalConfig()
   const [searchValue, setSearchValue] = useState("")
@@ -32,7 +30,7 @@ export const QuickJump = ({ setOpen }) => {
 
   return (
     <div>
-      <Search
+      <Input
         style={{ marginBottom: 8 }}
         placeholder="Search"
         onChange={(e) => setSearchValue(e.target.value)}
