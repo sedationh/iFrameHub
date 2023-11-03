@@ -4,6 +4,8 @@
 body {
   padding: 0;
   margin: 0;
+  /** 禁用前进后退手势 */
+  overscroll-behavior-x: none;
 }
 div {
   box-sizing: border-box;
