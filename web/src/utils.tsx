@@ -9,14 +9,14 @@ export const isJSON = (data: string) => {
   }
 }
 
-export const jumpBoard = (index, id) => {
-  const boards = document.querySelectorAll(`#${id} .board`)
+export const jumpBoard = (index, pageId) => {
+  const boards = document.querySelectorAll(`#${pageId} .board`)
   let x = 0
   for (let i = 0; i < index; i++) {
     x += boards[i].clientWidth + 16
   }
   setTimeout(() => {
-    const $page = document.getElementById(id)
+    const $page = document.getElementById(pageId)
     $page.scrollTo({
       left: x,
       behavior: "smooth",

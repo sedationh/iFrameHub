@@ -8,7 +8,7 @@ export type BoardType = {
   src: string
   width?: number
   index: number
-  id: string
+  pageId: string
 }
 
 const Board = (props: BoardType) => {
@@ -34,7 +34,7 @@ const Board = (props: BoardType) => {
       return
     }
     setIsFull(true)
-    jumpBoard(props.index, props.id)
+    jumpBoard(props.index, props.pageId)
   }
 
   const openNewWindow = () => {

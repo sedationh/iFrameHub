@@ -7,14 +7,14 @@ export const Home = () => {
   const page = usePage()
 
   return (
-    <>
+    <div className="flex overflow-x-auto">
       {config.map((item, index) => (
-        <div
-          className={item === page ? "inline-block overflow-x-auto" : "hidden"}
-        >
-          <Page id={`a${index}-${page.title}`}></Page>
-        </div>
+        <Page
+          key={`page-${index}-${item.title}`}
+          pageId={`page-${index}-${item.title}`}
+          hidden={item === page}
+        ></Page> //在CSS选择器中，以数字开头的选择器是无效的，所以设置以 page- 开头
       ))}
-    </>
+    </div>
   )
 }
