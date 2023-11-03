@@ -54,7 +54,7 @@ function Setting() {
   return (
     <div className="w-full">
       {contextHolder}
-      <Space className="mb-2 float-right">
+      <Space className="mb-2">
         <Button type="primary" className="bg-blue-500" onClick={reset}>
           恢复模板
         </Button>
