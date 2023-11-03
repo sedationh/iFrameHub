@@ -9,14 +9,14 @@ export const isJSON = (data: string) => {
   }
 }
 
-export const jumpBoard = (index) => {
-  const boards = document.querySelectorAll(".board")
+export const jumpBoard = (index, pageId) => {
+  const boards = document.querySelectorAll(`#${pageId} .board`)
   let x = 0
   for (let i = 0; i < index; i++) {
     x += boards[i].clientWidth + 16
   }
   setTimeout(() => {
-    const $page = document.querySelector("#page")
+    const $page = document.getElementById(pageId)
     $page.scrollTo({
       left: x,
       behavior: "smooth",
@@ -50,7 +50,7 @@ export const buildTreeDataFromConfig = (configRow, searchValue) => {
       }
 
       children.push({
-        key: item.key + "_" + srcItem.src,
+        key: item.key + "_" + index + "_" + srcItem.src,
         title: title,
       })
     }

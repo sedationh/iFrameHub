@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client"
 import App from "./App.tsx"
 import "./index.css"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import Page from "./components/Page/index.tsx"
 import Setting from "./components/Setting/index.tsx"
 import { GlobalConfigProvider } from "./context/globalConfig.tsx"
+import { Home } from "./components/Home/index.tsx"
 
 const router = createBrowserRouter([
   {
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "p/:page",
-        element: <Page />,
+        element: <Home />,
       },
       {
         path: "setting",
