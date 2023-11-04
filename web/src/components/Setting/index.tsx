@@ -55,13 +55,13 @@ function Setting() {
     <div className="w-full">
       {contextHolder}
       <Space className="mb-2">
-        <Button type="primary" className="bg-blue-500" onClick={reset}>
+        <Button type="primary" onClick={reset}>
           恢复模板
         </Button>
-        <Button type="primary" className="bg-blue-500" onClick={share}>
+        <Button type="primary" onClick={share}>
           分享配置
         </Button>
-        <Button type="primary" className="bg-blue-500" onClick={submit}>
+        <Button type="primary" onClick={submit}>
           确认
         </Button>
       </Space>
