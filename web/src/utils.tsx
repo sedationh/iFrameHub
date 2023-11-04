@@ -32,18 +32,19 @@ export const buildTreeDataFromConfig = (configRow, searchValue) => {
     const item = config[i]
     item.key = i + "_" + item.title
 
-    if (!item.content) {
+    if (!item.contents) {
       continue
     }
 
     const children = []
-    for (let index = 0; index < item.content.length; index++) {
-      const srcItem = item.content[index]
+    for (let index = 0; index < item.contents.length; index++) {
+      const srcItem = item.contents[index]
       const url = new URL(srcItem.src)
       const pathname = url.pathname.replace(/^(\s|\/)+|(\s|\/)+$/g, "") //去掉url.pathname首尾斜杠
       const host = url.host.split(".")
       const lastSecondElement = host[host.length - 2]
-      const title = pathname || lastSecondElement || srcItem.src
+      const title =
+        srcItem.title || pathname || lastSecondElement || srcItem.src
 
       if (searchValue && !title.includes(searchValue)) {
         continue

@@ -37,7 +37,7 @@ const Page = ({ pageId, hidden }) => {
       // 在CSS选择器中，以数字开头的选择器是无效的，所以设置以 page- 开头
       id={pageId}
     >
-      {page?.content?.map((item, index) => (
+      {page?.contents?.map((item, index) => (
         <Board
           key={`${index}-${page.title}`}
           index={index}

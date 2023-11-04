@@ -3,19 +3,22 @@ import { flushSync } from "react-dom"
 import { iframeAllowDirective } from "../../permissions-policy"
 import { Button, Space } from "antd"
 import { jumpBoard } from "../../utils"
+import { useGlobalConfig } from "../../context/globalConfig"
 
 export type BoardType = {
   src: string
   width?: number
   index: number
   pageId: string
+  visible: boolean
+  isFull: boolean
 }
 
 const Board = (props: BoardType) => {
   const iframeRef = useRef(null)
-
   const [src, setSrc] = useState(props.src)
-  const [isFull, setIsFull] = useState(false)
+  const [isFull, setIsFull] = useState(props.isFull)
+  const { updateConfigItem } = useGlobalConfig()
 
   const refresh = () => {
     const srcObj = new URL(src)
@@ -30,10 +33,12 @@ const Board = (props: BoardType) => {
   const handleFullChange = () => {
     if (isFull) {
       setIsFull(false)
-
+      updateConfigItem(props.src, { isFull: false })
       return
     }
+
     setIsFull(true)
+    updateConfigItem(props.src, { isFull: true })
     jumpBoard(props.index, props.pageId)
   }
 
