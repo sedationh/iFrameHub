@@ -1,5 +1,5 @@
 import { Editor } from "@monaco-editor/react"
-import { Button, Space, message } from "antd"
+import { Button, Space, message, Popconfirm } from "antd"
 import { defaultValue } from "../../config.ts"
 import { useEffect } from "react"
 import { useGlobalConfig } from "../../context/globalConfig"
@@ -55,9 +55,19 @@ function Setting() {
     <div className="w-full">
       {contextHolder}
       <Space className="mb-2">
-        <Button type="primary" className="bg-blue-500" onClick={reset}>
-          恢复模板
-        </Button>
+        <Popconfirm
+          placement="bottomRight"
+          title="恢复模板"
+          description="恢复默认模板将丢失此次更改， 是否继续？"
+          okText="恢复模板"
+          cancelText="取消"
+          onConfirm={reset}
+        >
+          <Button type="primary" className="bg-blue-500">
+            恢复模板
+          </Button>
+        </Popconfirm>
+
         <Button type="primary" className="bg-blue-500" onClick={share}>
           分享配置
         </Button>
