@@ -58,20 +58,17 @@ function Setting() {
         <Popconfirm
           placement="bottomRight"
           title="恢复模板"
-          description="恢复默认模板将丢失此次更改， 是否继续？"
+          description="恢复默认模板将丢失此次更改，是否继续？"
           okText="恢复模板"
           cancelText="取消"
           onConfirm={reset}
         >
-          <Button type="primary" className="bg-blue-500">
-            恢复模板
-          </Button>
+          <Button type="primary">恢复模板</Button>
         </Popconfirm>
-
-        <Button type="primary" className="bg-blue-500" onClick={share}>
+        <Button type="primary" onClick={share}>
           分享配置
         </Button>
-        <Button type="primary" className="bg-blue-500" onClick={submit}>
+        <Button type="primary" onClick={submit}>
           确认
         </Button>
       </Space>
