@@ -18,7 +18,10 @@ export const ContentSwitches = (props: ContentSwitchesProps) => {
       unCheckedChildren: "小屏",
       size: props.size,
       checked: props.isFull,
-      onClick: (checked) => {
+      onClick: (checked, e) => {
+        if (!checked) {
+          e.stopPropagation()
+        }
         updateConfigItem(props.src, { isFull: checked })
         jumpBoard(props.index, props.pageId)
       },
