@@ -8,25 +8,26 @@ export const QuickJump = ({ setOpen }) => {
   const { config } = useGlobalConfig()
   const [searchValue, setSearchValue] = useState("")
 
-  const treeData = buildTreeDataFromConfig(config, searchValue.trim())
-
   const navigate = useNavigate()
 
-  const onSelect = (selectedKeys) => {
-    const parentIndex = selectedKeys[0].split("_")[0]
-    const selectParent = selectedKeys[0].split("_")[1]
+  const onSelect = (selectedKey) => {
+    const parentIndex = selectedKey.split("_")[0]
+    const selectParent = selectedKey.split("_")[1]
 
     const index = treeData[parentIndex].children.findIndex(
-      (item) => item.key === selectedKeys[0]
+      (item) => item.key === selectedKey
     )
 
     navigate(`/p/${selectParent}`)
+
     setTimeout(() => {
       jumpBoard(index === -1 ? 0 : index, `page-${parentIndex}-${selectParent}`)
     }, 300)
 
     setOpen(false)
   }
+
+  const treeData = buildTreeDataFromConfig(config, searchValue.trim(), onSelect)
 
   return (
     <div>
@@ -35,7 +36,7 @@ export const QuickJump = ({ setOpen }) => {
         placeholder="Search"
         onChange={(e) => setSearchValue(e.target.value)}
       />
-      <Tree treeData={treeData} onSelect={onSelect} defaultExpandAll={true} />
+      <Tree treeData={treeData} defaultExpandAll={true} />
     </div>
   )
 }

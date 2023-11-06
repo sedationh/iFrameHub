@@ -1,6 +1,7 @@
 import { useLocalStorageState } from "ahooks"
 import { createContext, useContext } from "react"
-import { defaultValue } from "../config"
+import { Config, Content, defaultValue } from "../config"
+import { produce } from "immer"
 
 export const GlobalConfig = createContext(null)
 
@@ -13,8 +14,28 @@ export const GlobalConfigProvider = ({ children }) => {
     setConfig(defaultValue)
   }
 
+  const updateConfig = (updater: (draft: Config) => void) => {
+    setConfig((prevConfig: Config) =>
+      produce(prevConfig, (draft: Config) => {
+        updater(draft)
+      })
+    )
+  }
+  const updateConfigItem = (src: string, newContent: Partial<Content>) => {
+    updateConfig((draft) => {
+      for (const page of draft) {
+        let target = page.contents.find((content) => content.src === src)
+        if (target) {
+          target = Object.assign(target, newContent)
+          break
+        }
+      }
+      return draft
+    })
+  }
+
   return (
-    <GlobalConfig.Provider value={{ config, setConfig }}>
+    <GlobalConfig.Provider value={{ config, setConfig, updateConfigItem }}>
       {children}
     </GlobalConfig.Provider>
   )

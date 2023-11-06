@@ -2,20 +2,20 @@ import { useRef, useState } from "react"
 import { flushSync } from "react-dom"
 import { iframeAllowDirective } from "../../permissions-policy"
 import { Button, Space } from "antd"
-import { jumpBoard } from "../../utils"
+import { ContentSwitches } from "../Switches"
 
 export type BoardType = {
   src: string
   width?: number
   index: number
   pageId: string
+  visible: boolean
+  isFull: boolean
 }
 
 const Board = (props: BoardType) => {
   const iframeRef = useRef(null)
-
   const [src, setSrc] = useState(props.src)
-  const [isFull, setIsFull] = useState(false)
 
   const refresh = () => {
     const srcObj = new URL(src)
@@ -27,16 +27,6 @@ const Board = (props: BoardType) => {
     setSrc(srcObj.toString())
   }
 
-  const handleFullChange = () => {
-    if (isFull) {
-      setIsFull(false)
-
-      return
-    }
-    setIsFull(true)
-    jumpBoard(props.index, props.pageId)
-  }
-
   const openNewWindow = () => {
     window.open(src)
   }
@@ -44,22 +34,20 @@ const Board = (props: BoardType) => {
   return (
     <div
       style={{
-        minWidth: isFull ? `calc(100vw - 56px)` : props.width ?? 700,
+        minWidth: props.isFull ? `calc(100vw - 56px)` : props.width ?? 700,
       }}
       className="flex flex-col bg-white board"
     >
-      <div className="flex p-1 bg-accent">
+      <div className="flex p-1 bg-accent justify-between">
         <Space>
           <Button size="small" type="link" onClick={refresh}>
             刷新
-          </Button>
-          <Button size="small" type="link" onClick={handleFullChange}>
-            {isFull ? "恢复" : "全屏"}
           </Button>
           <Button size="small" type="link" onClick={openNewWindow}>
             新窗口打开
           </Button>
         </Space>
+        <ContentSwitches {...props} size="default"></ContentSwitches>
       </div>
       <iframe
         ref={iframeRef}
