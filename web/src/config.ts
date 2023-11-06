@@ -1,4 +1,4 @@
-interface Content {
+export interface Content {
   src: string
   title: string
   visible: boolean

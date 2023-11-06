@@ -1,10 +1,10 @@
 import { useRef, useState } from "react"
 import { flushSync } from "react-dom"
 import { iframeAllowDirective } from "../../permissions-policy"
-import { Button, Space } from "antd"
+import { Button, Space, SwitchProps } from "antd"
 import { jumpBoard } from "../../utils"
 import { useGlobalConfig } from "../../context/globalConfig"
-import { SwitchType, Switches } from "../Switches"
+import { Switches } from "../Switches"
 
 export type BoardType = {
   src: string
@@ -34,17 +34,14 @@ const Board = (props: BoardType) => {
     window.open(src)
   }
 
-  const switches: SwitchType[] = [
+  const switches: SwitchProps[] = [
     {
       checkedChildren: "全屏",
       unCheckedChildren: "小屏",
-      defaultChecked: props.isFull,
       size: "default",
       checked: props.isFull,
-      onClick: (checked, e) => {
-        e.stopPropagation()
+      onClick: (checked) => {
         updateConfigItem(props.src, { isFull: checked })
-        console.log({ checked })
         if (checked) {
           jumpBoard(props.index, props.pageId)
         }
@@ -53,7 +50,6 @@ const Board = (props: BoardType) => {
     {
       checkedChildren: "显示",
       unCheckedChildren: "隐藏",
-      defaultChecked: props.visible,
       checked: props.visible,
       size: "default",
       onClick: (checked, e) => {

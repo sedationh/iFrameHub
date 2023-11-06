@@ -1,5 +1,6 @@
 import { cloneDeep } from "lodash-es"
-import { SwitchType, Switches } from "./components/Switches"
+import { Switches } from "./components/Switches"
+import { SwitchProps } from "antd"
 
 export const isJSON = (data: string) => {
   try {
@@ -56,11 +57,10 @@ export const buildTreeDataFromConfig = (
         continue
       }
 
-      const switches: SwitchType[] = [
+      const switches: SwitchProps[] = [
         {
           checkedChildren: "全屏",
           unCheckedChildren: "小屏",
-          defaultChecked: srcItem.isFull,
           size: "small",
           checked: srcItem.isFull,
           onClick: (checked) => {
@@ -70,7 +70,6 @@ export const buildTreeDataFromConfig = (
         {
           checkedChildren: "显示",
           unCheckedChildren: "隐藏",
-          defaultChecked: srcItem.visible,
           size: "small",
           checked: srcItem.visible,
           onClick: (checked, e) => {
