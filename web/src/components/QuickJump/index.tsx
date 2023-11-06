@@ -5,7 +5,7 @@ import { buildTreeDataFromConfig, jumpBoard } from "../../utils"
 import { useState } from "react"
 
 export const QuickJump = ({ setOpen }) => {
-  const { config, updateConfigItem } = useGlobalConfig()
+  const { config } = useGlobalConfig()
   const [searchValue, setSearchValue] = useState("")
 
   const navigate = useNavigate()
@@ -27,12 +27,7 @@ export const QuickJump = ({ setOpen }) => {
     setOpen(false)
   }
 
-  const treeData = buildTreeDataFromConfig(
-    config,
-    updateConfigItem,
-    searchValue.trim(),
-    onSelect
-  )
+  const treeData = buildTreeDataFromConfig(config, searchValue.trim(), onSelect)
 
   return (
     <div>

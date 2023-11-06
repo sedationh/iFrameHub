@@ -1,10 +1,8 @@
 import { useRef, useState } from "react"
 import { flushSync } from "react-dom"
 import { iframeAllowDirective } from "../../permissions-policy"
-import { Button, Space, SwitchProps } from "antd"
-import { jumpBoard } from "../../utils"
-import { useGlobalConfig } from "../../context/globalConfig"
-import { Switches } from "../Switches"
+import { Button, Space } from "antd"
+import { ContentSwitches } from "../Switches"
 
 export type BoardType = {
   src: string
@@ -18,7 +16,6 @@ export type BoardType = {
 const Board = (props: BoardType) => {
   const iframeRef = useRef(null)
   const [src, setSrc] = useState(props.src)
-  const { updateConfigItem } = useGlobalConfig()
 
   const refresh = () => {
     const srcObj = new URL(src)
@@ -33,31 +30,6 @@ const Board = (props: BoardType) => {
   const openNewWindow = () => {
     window.open(src)
   }
-
-  const switches: SwitchProps[] = [
-    {
-      checkedChildren: "全屏",
-      unCheckedChildren: "小屏",
-      size: "default",
-      checked: props.isFull,
-      onClick: (checked) => {
-        updateConfigItem(props.src, { isFull: checked })
-        if (checked) {
-          jumpBoard(props.index, props.pageId)
-        }
-      },
-    },
-    {
-      checkedChildren: "显示",
-      unCheckedChildren: "隐藏",
-      checked: props.visible,
-      size: "default",
-      onClick: (checked, e) => {
-        e.stopPropagation()
-        updateConfigItem(props.src, { visible: checked })
-      },
-    },
-  ]
 
   return (
     <div
@@ -75,7 +47,7 @@ const Board = (props: BoardType) => {
             新窗口打开
           </Button>
         </Space>
-        <Switches switches={switches}></Switches>
+        <ContentSwitches {...props} size="default"></ContentSwitches>
       </div>
       <iframe
         ref={iframeRef}

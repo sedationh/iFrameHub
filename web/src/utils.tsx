@@ -1,6 +1,5 @@
 import { cloneDeep } from "lodash-es"
-import { Switches } from "./components/Switches"
-import { SwitchProps } from "antd"
+import { ContentSwitches } from "./components/Switches"
 
 export const isJSON = (data: string) => {
   try {
@@ -26,12 +25,7 @@ export const jumpBoard = (index, pageId) => {
   }, 200)
 }
 
-export const buildTreeDataFromConfig = (
-  configRow,
-  updateConfigItem,
-  searchValue,
-  onSelect
-) => {
+export const buildTreeDataFromConfig = (configRow, searchValue, onSelect) => {
   const treeData = []
   const config = cloneDeep(configRow)
 
@@ -57,28 +51,6 @@ export const buildTreeDataFromConfig = (
         continue
       }
 
-      const switches: SwitchProps[] = [
-        {
-          checkedChildren: "全屏",
-          unCheckedChildren: "小屏",
-          size: "small",
-          checked: srcItem.isFull,
-          onClick: (checked) => {
-            updateConfigItem(srcItem.src, { isFull: checked })
-          },
-        },
-        {
-          checkedChildren: "显示",
-          unCheckedChildren: "隐藏",
-          size: "small",
-          checked: srcItem.visible,
-          onClick: (checked, e) => {
-            e.stopPropagation()
-            updateConfigItem(srcItem.src, { visible: checked })
-          },
-        },
-      ]
-
       const key = item.key + "_" + index + "_" + srcItem.src
       children.push({
         key,
@@ -91,7 +63,7 @@ export const buildTreeDataFromConfig = (
           >
             <span className="truncate inline-block w-40">{title}</span>
             <button></button>
-            <Switches switches={switches}></Switches>
+            <ContentSwitches {...srcItem} size="small"></ContentSwitches>
           </span>
         ),
       })
