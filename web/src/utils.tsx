@@ -1,4 +1,5 @@
 import { cloneDeep } from "lodash-es"
+import { SwitchType, Switches } from "./components/Switches"
 
 export const isJSON = (data: string) => {
   try {
@@ -24,7 +25,12 @@ export const jumpBoard = (index, pageId) => {
   }, 200)
 }
 
-export const buildTreeDataFromConfig = (configRow, searchValue) => {
+export const buildTreeDataFromConfig = (
+  configRow,
+  updateConfigItem,
+  searchValue,
+  onSelect
+) => {
   const treeData = []
   const config = cloneDeep(configRow)
 
@@ -50,9 +56,45 @@ export const buildTreeDataFromConfig = (configRow, searchValue) => {
         continue
       }
 
+      const switches: SwitchType[] = [
+        {
+          checkedChildren: "全屏",
+          unCheckedChildren: "小屏",
+          defaultChecked: srcItem.isFull,
+          size: "small",
+          checked: srcItem.isFull,
+          onClick: (checked) => {
+            updateConfigItem(srcItem.src, { isFull: checked })
+          },
+        },
+        {
+          checkedChildren: "显示",
+          unCheckedChildren: "隐藏",
+          defaultChecked: srcItem.visible,
+          size: "small",
+          checked: srcItem.visible,
+          onClick: (checked, e) => {
+            e.stopPropagation()
+            updateConfigItem(srcItem.src, { visible: checked })
+          },
+        },
+      ]
+
+      const key = item.key + "_" + index + "_" + srcItem.src
       children.push({
-        key: item.key + "_" + index + "_" + srcItem.src,
-        title: title,
+        key,
+        title: (
+          <span
+            onClick={() => {
+              onSelect(key)
+            }}
+            className="flex"
+          >
+            <span className="truncate inline-block w-40">{title}</span>
+            <button></button>
+            <Switches switches={switches}></Switches>
+          </span>
+        ),
       })
     }
 
