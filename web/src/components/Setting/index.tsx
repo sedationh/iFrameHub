@@ -1,10 +1,10 @@
 import { Editor } from "@monaco-editor/react"
 import { Button, Space, message, Popconfirm } from "antd"
 import { defaultValue } from "../../config.ts"
-import { useEffect } from "react"
 import { useGlobalConfig } from "../../context/globalConfig"
 import { isJSON } from "../../utils.tsx"
 import { useGetState } from "ahooks"
+import useDrawer from "../../hooks/useDrawer.ts"
 
 function Setting() {
   const { config, setConfig } = useGlobalConfig()
@@ -37,19 +37,8 @@ function Setting() {
     const v = JSON.parse(getValue())
     setValue(JSON.stringify(v, null, 2))
   }
-  useEffect(() => {
-    document.addEventListener("keydown", handleSaveKeyboardAction, false)
-    return () => {
-      document.removeEventListener("keydown", handleSaveKeyboardAction, false)
-    }
-  }, [])
 
-  const handleSaveKeyboardAction = (e) => {
-    if ((e.ctrlKey && e.key === "s") || (e.metaKey && e.key === "s")) {
-      e.preventDefault()
-      submit()
-    }
-  }
+  useDrawer("s", submit)
 
   return (
     <div className="w-full">

@@ -4,6 +4,7 @@ import { CaretRightFilled } from "@ant-design/icons"
 import { Button, Drawer } from "antd"
 import { useState } from "react"
 import { QuickJump } from "../QuickJump"
+import useDrawer from "../../hooks/useDrawer"
 
 const NavWrapper = styled.div`
   min-width: 40px;
@@ -19,6 +20,8 @@ const Nav = () => {
     navigate("/setting")
     setOpen(false)
   }
+
+  useDrawer("e", () => setOpen(!open))
 
   return (
     <NavWrapper className="mr-2">
