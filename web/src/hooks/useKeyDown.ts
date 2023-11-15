@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-const useDrawer = (keyname: string, handler: () => void) => {
+const useKeyDown = (keyname: string, handler: () => void) => {
   useEffect(() => {
     const handleKeyDownAction = (e) => {
       if (
@@ -20,4 +20,4 @@ const useDrawer = (keyname: string, handler: () => void) => {
   }, [handler, keyname])
 }
 
-export default useDrawer
+export default useKeyDown
