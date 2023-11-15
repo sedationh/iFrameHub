@@ -66,7 +66,7 @@ export const buildTreeDataFromConfig = (configRow, searchValue, onSelect) => {
             }}
             className="flex"
           >
-            <Tooltip title={srcItem.src} color="#9F85FA">
+            <Tooltip title={srcItem.src} color="#9F85FA" mouseLeaveDelay={0}>
               <span className="truncate inline-block w-40">{title}</span>
             </Tooltip>
 
