@@ -1,5 +1,6 @@
 import { cloneDeep } from "lodash-es"
 import { ContentSwitches } from "./components/Switches"
+import { Tooltip } from "antd"
 
 export const isJSON = (data: string) => {
   try {
@@ -47,7 +48,11 @@ export const buildTreeDataFromConfig = (configRow, searchValue, onSelect) => {
       const title =
         srcItem.title || pathname || lastSecondElement || srcItem.src
 
-      if (searchValue && !title.includes(searchValue)) {
+      if (
+        searchValue &&
+        !title.includes(searchValue) &&
+        !srcItem.src.includes(searchValue)
+      ) {
         continue
       }
 
@@ -61,8 +66,10 @@ export const buildTreeDataFromConfig = (configRow, searchValue, onSelect) => {
             }}
             className="flex"
           >
-            <span className="truncate inline-block w-40">{title}</span>
-            <button></button>
+            <Tooltip title={srcItem.src} color="#9F85FA" mouseLeaveDelay={0}>
+              <span className="truncate inline-block w-40">{title}</span>
+            </Tooltip>
+
             <ContentSwitches {...srcItem} size="small"></ContentSwitches>
           </span>
         ),
