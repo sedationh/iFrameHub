@@ -4,7 +4,7 @@ import { defaultValue } from "../../config.ts"
 import { useGlobalConfig } from "../../context/globalConfig"
 import { isJSON } from "../../utils.tsx"
 import { useGetState } from "ahooks"
-import useDrawer from "../../hooks/useDrawer.ts"
+import useKeyDown from "../../hooks/useKeyDown.ts"
 
 function Setting() {
   const { config, setConfig } = useGlobalConfig()
@@ -38,7 +38,7 @@ function Setting() {
     setValue(JSON.stringify(v, null, 2))
   }
 
-  useDrawer("s", submit)
+  useKeyDown("s", submit)
 
   return (
     <div className="w-full">
