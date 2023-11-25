@@ -2,7 +2,7 @@ import { useRef, useState } from "react"
 import { flushSync } from "react-dom"
 import { iframeAllowDirective } from "../../permissions-policy"
 import { Button, Space } from "antd"
-import { ContentSwitches } from "../Switches"
+import { ContentSwitches } from "../ContentSwitches"
 
 export type BoardType = {
   src: string
@@ -34,7 +34,7 @@ const Board = (props: BoardType) => {
   return (
     <div
       style={{
-        minWidth: props.isFull ? `calc(100vw - 56px)` : props.width ?? 700,
+        minWidth: props.isFull ? `calc(100vw - 64px)` : props.width ?? 700,
       }}
       className="flex flex-col bg-white board"
     >

@@ -1,5 +1,5 @@
 import { cloneDeep } from "lodash-es"
-import { ContentSwitches } from "./components/Switches"
+import { ContentSwitches } from "./components/ContentSwitches"
 import { Tooltip } from "antd"
 
 export const isJSON = (data: string) => {
