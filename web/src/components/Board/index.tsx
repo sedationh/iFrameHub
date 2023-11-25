@@ -35,6 +35,7 @@ const Board = (props: BoardType) => {
     <div
       style={{
         minWidth: props.isFull ? `calc(100vw - 64px)` : props.width ?? 700,
+        transition: "all 0.25s ease-out",
       }}
       className="flex flex-col bg-white board"
     >
