@@ -70,7 +70,12 @@ export const buildTreeDataFromConfig = (configRow, searchValue, onSelect) => {
               <span className="truncate inline-block w-40">{title}</span>
             </Tooltip>
 
-            <ContentSwitches {...srcItem} size="small"></ContentSwitches>
+            <ContentSwitches
+              {...srcItem}
+              selectKey={key}
+              onSelect={onSelect}
+              size="small"
+            ></ContentSwitches>
           </span>
         ),
       })
