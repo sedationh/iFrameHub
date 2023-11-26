@@ -8,6 +8,8 @@ type ContentSwitchesProps = Partial<Content> & {
   size: SwitchSize
   index: number
   pageId: string
+  selectKey?: string
+  onSelect?: (key: string) => void
 }
 
 export const ContentSwitches = (props: ContentSwitchesProps) => {
@@ -18,8 +20,14 @@ export const ContentSwitches = (props: ContentSwitchesProps) => {
       unCheckedChildren: "小屏",
       size: props.size,
       checked: props.isFull,
-      onClick: (checked) => {
+      onClick: (checked, e) => {
+        e.stopPropagation()
         updateConfigItem(props.src, { isFull: checked })
+        if (checked && props.selectKey) {
+          props.onSelect(props.selectKey)
+          return
+        }
+
         jumpBoard(props.index, props.pageId)
       },
     },
