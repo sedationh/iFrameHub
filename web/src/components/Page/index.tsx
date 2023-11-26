@@ -25,7 +25,18 @@ const Page = ({ pageId, hidden }) => {
     return () => {
       resizeObserver.disconnect()
     }
-  }, [])
+  }, [pageId])
+
+  useEffect(() => {
+    const page = document.getElementById(pageId)
+    page.onwheel = (e) => {
+      e.preventDefault()
+      page.scrollLeft += e.deltaY
+    }
+    return () => {
+      page.onwheel = null
+    }
+  }, [pageId])
 
   return (
     <div
