@@ -33,6 +33,7 @@ export const buildTreeDataFromConfig = (configRow, searchValue, onSelect) => {
   for (let i = 0; i < config.length; i++) {
     const item = config[i]
     item.key = i + "_" + item.title
+    item.title = <span onClick={() => onSelect(item.key)}>{item.title}</span>
 
     if (!item.contents) {
       continue
