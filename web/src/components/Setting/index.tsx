@@ -42,8 +42,12 @@ function Setting() {
       type: "success",
       content: "修改成功",
     })
+
     //存入历史记录中
-    if (configHistory.length >= 10) {
+    if (getValue() === configHistory[0]?.value) {
+      return
+    }
+    if (configHistory.length >= 3) {
       updateConfigHistory((draft) => {
         draft.pop()
         return draft
@@ -57,6 +61,7 @@ function Setting() {
       return draft
     })
   }
+
   const reset = () => {
     setValue(JSON.stringify(defaultValue, null, 2))
   }
@@ -79,7 +84,7 @@ function Setting() {
       <div>暂无历史记录</div>
     ) : (
       <div>
-        {configHistory.map((item) => {
+        {configHistory.map((item, index) => {
           const editor = (
             <Editor
               width="500px"
@@ -92,8 +97,9 @@ function Setting() {
           )
           return (
             <Popover placement="right" content={editor}>
-              <div className="px-2 py-1 rounded-md w-96 hover:bg-green-200 flex items-center justify-between mt-3">
+              <div className="px-2 py-1 rounded-md w-96 hover:bg-green-200 flex items-center justify-between">
                 <div className=" w-4/5 truncate text-ellipsis mr-3">
+                  <span className="mr-3">{index}.</span>
                   {dayjs(item.time).format("YYYY-MM-DD HH:mm")}
                 </div>
                 <Space>
