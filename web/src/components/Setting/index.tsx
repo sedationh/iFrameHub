@@ -47,18 +47,15 @@ function Setting() {
     if (getValue() === configHistory[0]?.value) {
       return
     }
-    if (configHistory.length >= 3) {
-      updateConfigHistory((draft) => {
+    updateConfigHistory((draft) => {
+      if (configHistory.length >= 10) {
         draft.pop()
         return draft
-      })
-    }
-    updateConfigHistory((draft) => {
+      }
       draft.unshift({
         time: dayjs(),
         value: getValue(),
       })
-      return draft
     })
   }
 
