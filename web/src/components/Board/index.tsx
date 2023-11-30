@@ -1,8 +1,9 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { flushSync } from "react-dom"
 import { iframeAllowDirective } from "../../permissions-policy"
 import { Button, Space } from "antd"
 import { ContentSwitches } from "../ContentSwitches"
+import { useIframesCache } from "../../context/iframesCache"
 
 export type BoardType = {
   src: string
@@ -31,13 +32,30 @@ const Board = (props: BoardType) => {
     window.open(src)
   }
 
+  const { iframesCache } = useIframesCache()
+  const currentKey = `${props.pageId}-${props.index}-${props.src}`
+  const [hiddenMethod, setHiddenMethod] = useState("flex")
+
+  useEffect(() => {
+    if (props.visible === true) {
+      setHiddenMethod("flex")
+      return
+    }
+
+    if (iframesCache.get(currentKey)) {
+      setHiddenMethod("opacity-0 absolute right-96 top-96")
+      return
+    }
+    setHiddenMethod("hidden")
+  }, [iframesCache, props.visible, currentKey])
+
   return (
     <div
       style={{
         minWidth: props.isFull ? `calc(100vw - 64px)` : props.width ?? 700,
         transition: "all 0.25s ease-out",
       }}
-      className="flex flex-col bg-white board"
+      className={"flex flex-col bg-white board " + hiddenMethod}
     >
       <div className="flex p-1 bg-accent justify-between">
         <Space>
@@ -48,7 +66,11 @@ const Board = (props: BoardType) => {
             新窗口打开
           </Button>
         </Space>
-        <ContentSwitches {...props} size="default"></ContentSwitches>
+        <ContentSwitches
+          {...props}
+          size="default"
+          currentKey={currentKey}
+        ></ContentSwitches>
       </div>
       <iframe
         ref={iframeRef}

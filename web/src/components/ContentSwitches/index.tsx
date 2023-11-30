@@ -3,6 +3,7 @@ import { SwitchProps, SwitchSize } from "antd/es/switch"
 import { useGlobalConfig } from "../../context/globalConfig"
 import { Content } from "../../config"
 import { jumpBoard } from "../../utils"
+import { useIframesCache } from "../../context/iframesCache"
 
 type ContentSwitchesProps = Partial<Content> & {
   size: SwitchSize
@@ -10,10 +11,12 @@ type ContentSwitchesProps = Partial<Content> & {
   pageId: string
   selectKey?: string
   onSelect?: (key: string) => void
+  currentKey: string
 }
 
 export const ContentSwitches = (props: ContentSwitchesProps) => {
   const { updateConfigItem } = useGlobalConfig()
+  const { iframesCache } = useIframesCache()
   const switches: SwitchProps[] = [
     {
       checkedChildren: "全屏",
@@ -38,6 +41,9 @@ export const ContentSwitches = (props: ContentSwitchesProps) => {
       size: props.size,
       onClick: (checked, e) => {
         e.stopPropagation()
+        if (checked) {
+          iframesCache.set(props.currentKey, true)
+        }
         updateConfigItem(props.src, { visible: checked })
       },
     },

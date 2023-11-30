@@ -41,7 +41,7 @@ const Page = ({ pageId, hidden }) => {
   return (
     <div
       className={classNames([
-        "flex gap-4 h-full overflow-x-auto ",
+        "flex gap-4 h-full overflow-x-auto relative",
         hasScrollBar && "pb-2",
         !hidden && "hidden",
       ])}
