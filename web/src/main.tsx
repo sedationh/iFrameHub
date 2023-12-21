@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Setting from "./components/Setting/index.tsx"
 import { GlobalConfigProvider } from "./context/globalConfig.tsx"
 import { Home } from "./components/Home/index.tsx"
+import { IframesCacheProvider } from "./context/iframesCache.tsx"
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <GlobalConfigProvider>
-      <RouterProvider router={router} />
+      <IframesCacheProvider>
+        <RouterProvider router={router} />
+      </IframesCacheProvider>
     </GlobalConfigProvider>
   </React.StrictMode>
 )
